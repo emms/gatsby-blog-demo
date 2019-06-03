@@ -1,21 +1,55 @@
-import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import { ThemeProvider } from 'styled-components'
+import Hero from '../components/Hero'
+import BlogPost from '../components/BlogPost'
+import SEO from '../components/SEO'
+import { theme, GlobalStyle } from '../styles'
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+    <StaticQuery
+      query={graphql`
+        query IndexPageQuery {
+          site {
+            siteMetadata {
+              title
+            }
+          }
+          allContentfulBlogPost {
+            edges {
+              node {
+                bodyContent {
+                  json
+                }
+                title
+                postedAt
+              }
+            }
+          }
+        }
+      `}
+      render={data => {
+        console.log(data)
+        return (
+          <ThemeProvider theme={theme}>
+            <>
+              <GlobalStyle />
+              <Hero siteTitle={data.site.siteMetadata.title} />
+              {data.allContentfulBlogPost.edges.map((blogPost, i) => (
+                <BlogPost
+                  key={i}
+                  title={blogPost['node'].title}
+                  jsonContent={blogPost['node'].bodyContent['json']}
+                />
+              ))}
+            </>
+          </ThemeProvider>
+        )
+      }}
+    />
+  </>
 )
 
 export default IndexPage
