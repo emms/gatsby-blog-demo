@@ -22,7 +22,7 @@ const StyledHero = styled.div`
     letter-spacing: 4px;
     margin: 0;
     padding: 430px 30px 0;
-    max-width: 430px;
+    max-width: 470px;
 
     ${media.tabletPortraitUp`
       padding: 400px 100px 0;
