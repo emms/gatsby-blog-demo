@@ -40,8 +40,9 @@ const IndexPage = () => (
               {data.allContentfulBlogPost.edges.map((blogPost, i) => (
                 <BlogPost
                   key={i}
-                  title={blogPost['node'].title}
-                  jsonContent={blogPost['node'].bodyContent['json']}
+                  title={blogPost.node.title}
+                  postedAt={blogPost.node.postedAt}
+                  jsonContent={blogPost.node.bodyContent.json}
                 />
               ))}
             </>

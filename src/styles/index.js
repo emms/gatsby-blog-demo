@@ -18,6 +18,7 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 
 export const theme = {
   headingFontFamily: 'Futura',
+  bodyFontFamily: 'Open Sans',
   colorAccent: '#FFB078'
 }
 
@@ -27,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: ${props => props.theme.bodyFontFamily};
   }
 
   h1 {
