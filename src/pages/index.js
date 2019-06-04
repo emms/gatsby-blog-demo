@@ -29,6 +29,10 @@ const Content = styled.div`
   `}
 `
 
+const SectionTitle = styled.h3`
+  padding-bottom: 30px;
+`
+
 const IndexPage = () => (
   <>
     <SEO title="Home" />
@@ -61,14 +65,22 @@ const IndexPage = () => (
               <GlobalStyle />
               <Hero siteTitle={data.site.siteMetadata.title} />
               <Content>
-                {data.allContentfulBlogPost.edges.map((blogPost, i) => (
-                  <BlogPost
-                    key={i}
-                    title={blogPost.node.title}
-                    postedAt={blogPost.node.postedAt}
-                    jsonContent={blogPost.node.bodyContent.json}
-                  />
-                ))}
+                <SectionTitle>Categories</SectionTitle>
+                <SectionTitle>Latest</SectionTitle>
+                {data.allContentfulBlogPost.edges
+                  .sort(
+                    (a, b) =>
+                      new Date(b.node.postedAt).getTime() -
+                      new Date(a.node.postedAt).getTime()
+                  )
+                  .map((blogPost, i) => (
+                    <BlogPost
+                      key={i}
+                      title={blogPost.node.title}
+                      postedAt={blogPost.node.postedAt}
+                      jsonContent={blogPost.node.bodyContent.json}
+                    />
+                  ))}
               </Content>
               <Footer />
             </>

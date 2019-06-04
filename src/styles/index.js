@@ -44,6 +44,13 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  h3 {
+    text-transform: uppercase;
+    font-family: ${props => props.theme.headingFontFamily};
+    font-size: 16px;
+    margin: 0;
+  }
+
   p {
     font-family: ${props => props.theme.bodyFontFamily};
     letter-spacing: 0.7px;
