@@ -6,7 +6,12 @@ import format from 'date-fns/format'
 
 const StyledImage = styled.img`
   max-width: 100%;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+
+  &:not(:first-of-type) {
+    margin-top: 30px;
+  }
 `
 
 const StyledBlogPost = styled.div`
@@ -33,9 +38,11 @@ const StyledBlogPost = styled.div`
 const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
-    [BLOCKS.EMBEDDED_ASSET]: node => (
-      <StyledImage src={node.data.target.fields.file['en-US'].url} />
-    )
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      if (node.data.target.fields)
+        return <StyledImage src={node.data.target.fields.file['en-US'].url} />
+      return null
+    }
   }
 }
 

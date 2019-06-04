@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import Hero from '../components/Hero'
 import BlogPost from '../components/BlogPost'
 import Footer from '../components/Footer'
+import CategoryLink from '../components/CategoryLink'
 import SEO from '../components/SEO'
 import { theme, GlobalStyle, media } from '../styles'
 
@@ -33,6 +34,15 @@ const SectionTitle = styled.h3`
   padding-bottom: 30px;
 `
 
+const CategoriesContainer = styled.div`
+  width: 100%;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding-bottom: 60px;
+`
+
 const IndexPage = () => (
   <>
     <SEO title="Home" />
@@ -55,6 +65,19 @@ const IndexPage = () => (
               }
             }
           }
+          allContentfulBlogPostCategory {
+            edges {
+              node {
+                coverImage {
+                  file {
+                    url
+                  }
+                }
+                title
+                url
+              }
+            }
+          }
         }
       `}
       render={data => {
@@ -66,6 +89,18 @@ const IndexPage = () => (
               <Hero siteTitle={data.site.siteMetadata.title} />
               <Content>
                 <SectionTitle>Categories</SectionTitle>
+                <CategoriesContainer>
+                  {data.allContentfulBlogPostCategory.edges.map(
+                    (category, i) => (
+                      <CategoryLink
+                        key={i}
+                        title={category.node.title}
+                        coverimage={category.node.coverImage.file.url}
+                        url={category.node.url}
+                      />
+                    )
+                  )}
+                </CategoriesContainer>
                 <SectionTitle>Latest</SectionTitle>
                 {data.allContentfulBlogPost.edges
                   .sort(

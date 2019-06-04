@@ -51,6 +51,15 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  h4 {
+    text-transform: uppercase;
+    font-family: ${props => props.theme.bodyFontFamily};
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+
   p {
     font-family: ${props => props.theme.bodyFontFamily};
     letter-spacing: 0.7px;
