@@ -15,6 +15,14 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            allContentfulBlogPostCategory {
+              edges {
+                node {
+                  url
+                  id
+                }
+              }
+            }
           }
         `
       ).then(result => {
@@ -43,6 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         const postsPerPage = 3
         const numPages = Math.ceil(posts.length / postsPerPage)
+
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
             path: i === 0 ? `/` : `/${i + 1}`,
@@ -54,6 +63,19 @@ exports.createPages = ({ graphql, actions }) => {
               currentPage: i + 1,
               nextPageLink: `/${i + 2}`,
               prevPageLink: i === 1 ? `/` : `/${i}`
+            }
+          })
+        })
+
+        const categories = result.data.allContentfulBlogPostCategory.edges
+
+        categories.map(category => {
+          console.log(category.node)
+          createPage({
+            path: `/category/${category.node.url}`,
+            component: path.resolve('./src/templates/CategoryList.js'),
+            context: {
+              categoryId: category.node.id
             }
           })
         })
