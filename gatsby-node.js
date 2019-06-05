@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulBlogPost(sort: { order: DESC, fields: [postedAt] }) {
               edges {
                 node {
                   id
@@ -23,6 +23,24 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const posts = result.data.allContentfulBlogPost.edges
+
+        posts.map((post, i) => {
+          const next = i === posts.length - 1 ? null : posts[i + 1].node
+          const previous = i === 0 ? null : posts[i - 1].node
+
+          createPage({
+            path: `/post/${post.node.id}`,
+            component: path.resolve('./src/templates/BlogPostPage.js'),
+            context: {
+              id: post.node.id,
+              currentPage: i + 1,
+              numPages: posts.length,
+              nextPageLink: next ? `/post/${next.id}` : null,
+              prevPageLink: previous ? `/post/${previous.id}` : null
+            }
+          })
+        })
+
         const postsPerPage = 3
         const numPages = Math.ceil(posts.length / postsPerPage)
         Array.from({ length: numPages }).forEach((_, i) => {

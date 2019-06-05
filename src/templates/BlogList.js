@@ -1,10 +1,11 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
-import styled, { ThemeProvider, css } from 'styled-components'
+import { graphql } from 'gatsby'
+import styled, { ThemeProvider } from 'styled-components'
 import Hero from '../components/Hero'
 import BlogPost from '../components/BlogPost'
 import Footer from '../components/Footer'
 import CategoryLink from '../components/CategoryLink'
+import { NextPageLink, PrevPageLink } from '../components/NavLinks'
 import SEO from '../components/SEO'
 import { theme, GlobalStyle, media } from '../styles'
 
@@ -41,34 +42,6 @@ const CategoriesContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
   padding-bottom: 60px;
-`
-
-const sharedNavLinkStyle = css`
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 15px 20px;
-  background-color: ${props => props.theme.colorAccent};
-  border-radius: 4px;
-`
-
-const PrevPageLink = styled(Link)`
-  ${sharedNavLinkStyle}
-  align-self: flex-start;
-
-  > span {
-    font-size: 16px;
-    color: #fff;
-  }
-`
-
-const NextPageLink = styled(Link)`
-  ${sharedNavLinkStyle}
-  align-self: flex-end;
-
-  > span {
-    font-size: 16px;
-    color: #fff;
-  }
 `
 
 const ButtonsContainer = styled.div`
@@ -111,14 +84,10 @@ const BlogList = ({ data, pageContext }) => {
             {pageContext && (
               <ButtonsContainer>
                 {pageContext.currentPage > 1 && (
-                  <PrevPageLink to={pageContext.prevPageLink}>
-                    <span>Previous page</span>
-                  </PrevPageLink>
+                  <PrevPageLink to={pageContext.prevPageLink} />
                 )}
                 {pageContext.currentPage < pageContext.numPages && (
-                  <NextPageLink to={pageContext.nextPageLink}>
-                    <span>Next page</span>
-                  </NextPageLink>
+                  <NextPageLink to={pageContext.nextPageLink} />
                 )}
               </ButtonsContainer>
             )}
@@ -130,7 +99,7 @@ const BlogList = ({ data, pageContext }) => {
   )
 }
 
-export const blogPostQuery = graphql`
+export const blogListQuery = graphql`
   query blogListQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {

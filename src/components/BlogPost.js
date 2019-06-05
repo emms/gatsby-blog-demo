@@ -2,6 +2,7 @@ import React from 'react'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 import format from 'date-fns/format'
 
 const StyledImage = styled.img`
@@ -19,8 +20,11 @@ const StyledBlogPost = styled.div`
     padding-bottom: 80px;
   }
 
-  > h2 {
-    padding-bottom: 30px;
+  > a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    padding-bottom: 20px;
   }
 
   > p {
@@ -46,9 +50,11 @@ const options = {
   }
 }
 
-const BlogPost = ({ title, postedAt, jsonContent }) => (
+const BlogPost = ({ title, id, postedAt, jsonContent }) => (
   <StyledBlogPost>
-    <h2>{title}</h2>
+    <Link to={`/post/${id}`}>
+      <h2>{title}</h2>
+    </Link>
     <p>{`Posted on ${format(postedAt, 'DD.MM.YYYY')}`}</p>
     {documentToReactComponents(jsonContent, options)}
   </StyledBlogPost>
