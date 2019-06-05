@@ -15,8 +15,8 @@ const StyledImage = styled.img`
 `
 
 const StyledBlogPost = styled.div`
-  &:not(:last-child) {
-    padding-bottom: 60px;
+  &:not(:last-of-type) {
+    padding-bottom: 80px;
   }
 
   > h2 {
