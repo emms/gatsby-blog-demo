@@ -37,11 +37,22 @@ const SectionTitle = styled.h3`
 
 const CategoriesContainer = styled.div`
   width: 100%;
-  height: 200px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 200px 200px 200px 200px;
+  grid-template-columns: auto;
   grid-gap: 20px;
   padding-bottom: 60px;
+
+  ${media.tabletPortraitUp`
+    grid-template-rows: 150px;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  `}
+
+  ${media.tabletLandscapeUp`
+    grid-template-rows: 200px;
+    grid-gap: 20px;
+  `}
 `
 
 const ButtonsContainer = styled.div`

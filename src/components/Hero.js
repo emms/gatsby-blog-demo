@@ -7,7 +7,7 @@ import { media } from '../styles'
 
 const StyledHero = styled.div`
   height: 800px;
-  max-height: 95vh;
+  max-height: 85vh;
   background-color: #999;
   background-image: url(${heroImg});
   background-size: cover;
@@ -21,11 +21,11 @@ const StyledHero = styled.div`
     text-transform: uppercase;
     letter-spacing: 4px;
     margin: 0;
-    padding: 430px 30px 0;
+    padding: 300px 30px 0;
     max-width: 470px;
 
     ${media.tabletPortraitUp`
-      padding: 400px 100px 0;
+      padding: 330px 100px 0;
     `}
 
     > a {
@@ -37,7 +37,7 @@ const StyledHero = styled.div`
 
 const AccentRow = styled.div`
   width: 100%;
-  height: 45px;
+  height: 15px;
   background-color: ${props => props.theme.colorAccent};
 `
 
