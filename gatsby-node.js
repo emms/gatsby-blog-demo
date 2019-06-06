@@ -20,6 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   url
                   id
+                  title
                 }
               }
             }
@@ -70,12 +71,12 @@ exports.createPages = ({ graphql, actions }) => {
         const categories = result.data.allContentfulBlogPostCategory.edges
 
         categories.map(category => {
-          console.log(category.node)
           createPage({
             path: `/category/${category.node.url}`,
             component: path.resolve('./src/templates/CategoryList.js'),
             context: {
-              categoryId: category.node.id
+              categoryId: category.node.id,
+              categoryTitle: category.node.title
             }
           })
         })

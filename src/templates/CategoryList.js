@@ -1,10 +1,9 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 import Hero from '../components/Hero'
 import BlogPost from '../components/BlogPost'
 import Footer from '../components/Footer'
-import CategoryLink from '../components/CategoryLink'
 import { NextPageLink, PrevPageLink } from '../components/NavLinks'
 import SEO from '../components/SEO'
 import { theme, GlobalStyle, media } from '../styles'
@@ -35,19 +34,17 @@ const SectionTitle = styled.h3`
   padding-bottom: 30px;
 `
 
-const CategoriesContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding-bottom: 60px;
-`
-
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`
+
+const BackLink = styled(Link)`
+  display: block;
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 30px;
 `
 
 const CategoryList = ({ data, pageContext }) => {
@@ -60,18 +57,10 @@ const CategoryList = ({ data, pageContext }) => {
           <GlobalStyle />
           <Hero siteTitle={data.site.siteMetadata.title} />
           <Content>
-            <SectionTitle>Categories</SectionTitle>
-            <CategoriesContainer>
-              {data.allContentfulBlogPostCategory.edges.map((category, i) => (
-                <CategoryLink
-                  key={i}
-                  title={category.node.title}
-                  coverimage={category.node.coverImage.file.url}
-                  url={category.node.url}
-                />
-              ))}
-            </CategoriesContainer>
-            <SectionTitle>Latest</SectionTitle>
+            <BackLink to="/">← Back to the front page</BackLink>
+            <SectionTitle>{`Category: ${
+              pageContext.categoryTitle
+            }`}</SectionTitle>
             {data.allContentfulBlogPost.edges.map((blogPost, i) => (
               <BlogPost
                 key={i}
@@ -121,19 +110,6 @@ export const categoryListQuery = graphql`
             url
             id
           }
-        }
-      }
-    }
-    allContentfulBlogPostCategory {
-      edges {
-        node {
-          coverImage {
-            file {
-              url
-            }
-          }
-          title
-          url
         }
       }
     }

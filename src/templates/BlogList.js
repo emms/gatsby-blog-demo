@@ -71,7 +71,11 @@ const BlogList = ({ data, pageContext }) => {
                 />
               ))}
             </CategoriesContainer>
-            <SectionTitle>Latest</SectionTitle>
+            <SectionTitle>
+              {pageContext.currentPage > 1
+                ? `Latest, page ${pageContext.currentPage}`
+                : 'Latest'}
+            </SectionTitle>
             {data.allContentfulBlogPost.edges.map((blogPost, i) => (
               <BlogPost
                 key={i}
