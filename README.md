@@ -5,3 +5,5 @@ This repo is a demo of a blog built in React with Gatsby, using Contentful's CMS
 Features include pagination of the content and filtering content by categories.
 
 See the project live [here](https://unruffled-feynman-32fd80.netlify.com/).
+
+![The front page of the blog: ](./screenshot.png 'Blog front page')
