@@ -7,7 +7,7 @@ import { media } from '../styles'
 
 const StyledHero = styled.div`
   height: 800px;
-  max-height: 85vh;
+  max-height: 88vh;
   background-color: #999;
   background-image: url(${heroImg});
   background-size: cover;
