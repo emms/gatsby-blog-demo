@@ -48,10 +48,9 @@ const BackLink = styled(Link)`
 `
 
 const CategoryList = ({ data, pageContext }) => {
-  console.log(data)
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Category" />
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
@@ -61,6 +60,11 @@ const CategoryList = ({ data, pageContext }) => {
             <SectionTitle>{`Category: ${
               pageContext.categoryTitle
             }`}</SectionTitle>
+            {data.allContentfulBlogPost.edges.length === 0 && (
+              <p>{`No posts were found in category ${
+                pageContext.categoryTitle
+              }.`}</p>
+            )}
             {data.allContentfulBlogPost.edges.map((blogPost, i) => (
               <BlogPost
                 key={i}
