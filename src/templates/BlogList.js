@@ -62,7 +62,6 @@ const ButtonsContainer = styled.div`
 `
 
 const BlogList = ({ data, pageContext }) => {
-  console.log(data)
   return (
     <>
       <SEO title="Home" />

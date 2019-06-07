@@ -37,7 +37,6 @@ const ButtonsContainer = styled.div`
 `
 
 const BlogPostPage = ({ data, pageContext }) => {
-  console.log(data, pageContext)
   return (
     <>
       <SEO title="Post" />
