@@ -39,7 +39,7 @@ const ButtonsContainer = styled.div`
 const BlogPostPage = ({ data, pageContext }) => {
   return (
     <>
-      <SEO title="Post" />
+      <SEO title={data.contentfulBlogPost.title} />
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />

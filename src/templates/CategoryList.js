@@ -50,7 +50,7 @@ const BackLink = styled(Link)`
 const CategoryList = ({ data, pageContext }) => {
   return (
     <>
-      <SEO title="Category" />
+      <SEO title={`Category: ${pageContext.categoryTitle}`} />
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
