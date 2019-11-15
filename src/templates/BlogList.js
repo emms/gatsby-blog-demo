@@ -92,7 +92,11 @@ const BlogList = ({ data, pageContext }) => {
                 id={blogPost.node.id}
                 title={blogPost.node.title}
                 postedAt={blogPost.node.postedAt}
-                jsonContent={blogPost.node.bodyContent.json}
+                jsonContent={
+                  blogPost.node.bodyContent
+                    ? blogPost.node.bodyContent.json
+                    : null
+                }
               />
             ))}
             {pageContext && (
