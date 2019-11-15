@@ -50,7 +50,11 @@ const BlogPostPage = ({ data, pageContext }) => {
                 id={data.contentfulBlogPost.id}
                 title={data.contentfulBlogPost.title}
                 postedAt={data.contentfulBlogPost.postedAt}
-                jsonContent={data.contentfulBlogPost.bodyContent.json}
+                jsonContent={
+                  data.contentfulBlogPost.bodyContent
+                    ? data.contentfulBlogPost.bodyContent.json
+                    : null
+                }
               />
             )}
             {pageContext && (

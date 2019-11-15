@@ -56,7 +56,7 @@ const BlogPost = ({ title, id, postedAt, jsonContent }) => (
       <h2>{title}</h2>
     </Link>
     <p>{`Posted on ${format(postedAt, 'DD.MM.YYYY')}`}</p>
-    {documentToReactComponents(jsonContent, options)}
+    {jsonContent && documentToReactComponents(jsonContent, options)}
   </StyledBlogPost>
 )
 
