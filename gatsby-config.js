@@ -1,5 +1,7 @@
 require(`dotenv`).config({ path: `.env` })
 
+console.log(process.env.CONTENTFUL_ACCESS_TOKEN)
+
 module.exports = {
   siteMetadata: {
     title: `Diving-themed Gatsby Blog Demo`,
