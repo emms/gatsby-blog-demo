@@ -12,6 +12,7 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   id
+                  slug
                 }
               }
             }
@@ -38,14 +39,15 @@ exports.createPages = ({ graphql, actions }) => {
           const previous = i === 0 ? null : posts[i - 1].node
 
           createPage({
-            path: `/post/${post.node.id}`,
+            path: `/post/${post.node.slug}`,
             component: path.resolve('./src/templates/BlogPostPage.js'),
             context: {
               id: post.node.id,
+              slug: post.node.slug,
               currentPage: i + 1,
               numPages: posts.length,
-              nextPageLink: next ? `/post/${next.id}` : null,
-              prevPageLink: previous ? `/post/${previous.id}` : null
+              nextPageLink: next ? `/post/${next.slug}` : null,
+              prevPageLink: previous ? `/post/${previous.slug}` : null
             }
           })
         })

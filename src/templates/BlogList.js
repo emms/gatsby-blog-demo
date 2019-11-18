@@ -90,6 +90,7 @@ const BlogList = ({ data, pageContext }) => {
               <BlogPost
                 key={i}
                 id={blogPost.node.id}
+                slug={blogPost.node.slug}
                 title={blogPost.node.title}
                 postedAt={blogPost.node.postedAt}
                 jsonContent={
@@ -137,6 +138,7 @@ export const blogListQuery = graphql`
           title
           postedAt
           id
+          slug
         }
       }
     }

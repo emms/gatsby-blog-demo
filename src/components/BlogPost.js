@@ -50,9 +50,9 @@ const options = {
   }
 }
 
-const BlogPost = ({ title, id, postedAt, jsonContent }) => (
+const BlogPost = ({ title, id, slug, postedAt, jsonContent }) => (
   <StyledBlogPost>
-    <Link to={`/post/${id}`}>
+    <Link to={`/post/${slug}`}>
       <h2>{title}</h2>
     </Link>
     <p>{`Posted on ${format(postedAt, 'DD.MM.YYYY')}`}</p>

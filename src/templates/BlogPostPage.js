@@ -48,6 +48,7 @@ const BlogPostPage = ({ data, pageContext }) => {
             {data.contentfulBlogPost && (
               <BlogPost
                 id={data.contentfulBlogPost.id}
+                slug={data.contentfulBlogPost.slug}
                 title={data.contentfulBlogPost.title}
                 postedAt={data.contentfulBlogPost.postedAt}
                 jsonContent={
@@ -89,6 +90,7 @@ export const blogPostQuery = graphql`
       title
       postedAt
       id
+      slug
     }
   }
 `
