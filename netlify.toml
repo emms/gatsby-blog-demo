@@ -2,7 +2,7 @@
   environment = { CONTENTFUL_ACCESS_TOKEN = "Y9jUnWj0VG51Ng7BmrJBgtLOqzG9Zbjv27x-LFUQ8pQ", CONTENTFUL_HOST = "preview.contentful.com" }
 
 [[redirects]]
-  from = "https://unruffled-feynman-32fd80.netlify.app"
+  from = "https://unruffled-feynman-32fd80.netlify.app/*"
   to = "https://www.emms.dev"
   status = 301
   force = true
